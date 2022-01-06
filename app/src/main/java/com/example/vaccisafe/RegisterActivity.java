@@ -109,6 +109,7 @@ public class RegisterActivity extends AppCompatActivity implements DatePickerDia
                 Calendar.getInstance().get(Calendar.MONTH),
                 Calendar.getInstance().get(Calendar.DAY_OF_MONTH)
         );
+        datePickerDialog.getDatePicker().setMaxDate(System.currentTimeMillis());
         datePickerDialog.show();
     }
 
@@ -175,13 +176,12 @@ public class RegisterActivity extends AppCompatActivity implements DatePickerDia
         if (year > Calendar.getInstance().get(Calendar.YEAR)) {
             show_snackbar("Enter valid date of birth year");
             all_correct = false;
-        } else if (month > Calendar.getInstance().get(Calendar.MONTH) + 1) {
+        } else if (month > (Calendar.getInstance().get(Calendar.MONTH) + 1)) {
             if (day > Calendar.getInstance().get(Calendar.DAY_OF_MONTH)) {
                 show_snackbar("Enter a valid date of birth date");
                 all_correct = false;
             }
         }
-
 
         if (gender.equals("Select gender")) {
             show_snackbar("Please select your gender.");
@@ -192,18 +192,6 @@ public class RegisterActivity extends AppCompatActivity implements DatePickerDia
             show_snackbar("Please select your blood group.");
             all_correct = false;
         }
-
-        //try {
-        // change the String mobile number to an integer
-        //int mobile_number = Integer.parseInt(string_mobile_number);
-
-
-
-        //}
-        //catch (JSONException e) {
-        //    show_snackbar("ERROR! JSONexception");
-        //    all_correct = false;
-        //}
 
         if (all_correct) {
             Map<String, String> obj = new HashMap<String, String>();
@@ -237,8 +225,9 @@ public class RegisterActivity extends AppCompatActivity implements DatePickerDia
                         public void onResponse(JSONObject response) {
                             // TODO: check if email already exists in the database (on server)
                             try {
-                                Log.d(TAG, "onResponse: pk from server " + response.getString("pk"));
-                                show_snackbar(response.getString("pk"));
+                                String pk = response.getString("pk");
+                                String email = response.getString("email");
+                                show_snackbar(pk + " " + email);
 
                             } catch (JSONException e) {
                                 e.printStackTrace();

@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/coordinator_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".RegisterActivity">
+
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/register_patient_text_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Register to VacciSafe"
+                android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                android:textSize="36sp" />
+
+            <EditText
+                android:id="@+id/email_addr"
+                android:layout_width="386dp"
+                android:layout_height="53dp"
+                android:layout_below="@+id/register_patient_text_view"
+                android:layout_alignStart="@id/register_patient_text_view"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="10sp"
+                android:layout_marginTop="31dp"
+                android:layout_marginEnd="19dp"
+                android:hint="Email id"
+                android:inputType="text"
+                tools:ignore="TextFields" />
+
+
+            <EditText
+                android:id="@+id/password"
+                android:layout_width="386dp"
+                android:layout_height="53dp"
+                android:layout_below="@+id/email_addr"
+
+                android:layout_alignStart="@id/register_patient_text_view"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="25dp"
+                android:layout_marginEnd="19dp"
+                android:hint="Password"
+                android:inputType="textPassword"
+                tools:ignore="TextFields" />
+
+
+            <EditText
+                android:id="@+id/fname"
+                android:layout_width="386dp"
+                android:layout_height="53dp"
+                android:layout_below="@+id/password"
+
+                android:layout_alignStart="@id/register_patient_text_view"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="25dp"
+                android:layout_marginEnd="19dp"
+                android:hint="First Name"
+                android:inputType="text"
+                tools:ignore="TextFields" />
+
+            <EditText
+                android:id="@+id/lname"
+                android:layout_width="386dp"
+                android:layout_height="53dp"
+                android:layout_below="@+id/fname"
+
+                android:layout_alignStart="@id/register_patient_text_view"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="25dp"
+                android:layout_marginEnd="19dp"
+                android:hint="Last Name"
+                android:inputType="text"
+                tools:ignore="TextFields" />
+
+            <EditText
+                android:id="@+id/mobile_number"
+                android:layout_width="386dp"
+                android:layout_height="53dp"
+                android:layout_alignStart="@id/register_patient_text_view"
+                android:layout_below="@+id/lname"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="25dp"
+                android:layout_marginEnd="19dp"
+                android:hint="Mobile Number"
+                android:inputType="text"
+                app:layout_anchorGravity="center"
+                tools:ignore="TextFields" />
+
+            <Spinner
+                android:id="@+id/gender"
+                android:layout_width="386dp"
+                android:layout_height="53dp"
+                android:layout_alignStart="@id/register_patient_text_view"
+                android:layout_below="@+id/mobile_number"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="25dp"
+                android:layout_marginEnd="19dp"
+                />
+
+            <TextView
+                android:id="@+id/dob_textview"
+                android:layout_width="386dp"
+                android:layout_height="53dp"
+                android:layout_alignStart="@id/register_patient_text_view"
+                android:layout_below="@+id/dob"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="19dp"
+                android:text="Select Date of Birth"
+                android:textSize="24sp"/>
+
+            <Button
+                android:id="@+id/dob"
+                android:layout_width="386dp"
+                android:layout_height="53dp"
+                android:layout_alignStart="@id/register_patient_text_view"
+                android:layout_below="@+id/gender"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="25dp"
+                android:layout_marginEnd="19dp"
+                android:text="Select DOB"
+                android:onClick="showDatePickerDialog" />
+
+            <Spinner
+                android:id="@+id/blood_group"
+                android:layout_width="386dp"
+                android:layout_height="53dp"
+                android:layout_alignStart="@id/register_patient_text_view"
+                android:layout_below="@+id/dob_textview"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="25dp"
+                android:layout_marginEnd="19dp"
+                />
+
+            <EditText
+                android:id="@+id/address"
+                android:layout_width="386dp"
+                android:layout_height="53dp"
+                android:layout_alignStart="@id/register_patient_text_view"
+                android:layout_below="@+id/blood_group"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="25dp"
+                android:layout_marginEnd="19dp"
+                android:hint="Address"
+                android:inputType="text"
+                app:layout_anchorGravity="center"
+                tools:ignore="TextFields" />
+
+            <EditText
+                android:id="@+id/city"
+                android:layout_width="386dp"
+                android:layout_height="53dp"
+                android:layout_alignStart="@id/register_patient_text_view"
+                android:layout_below="@+id/address"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="25dp"
+                android:layout_marginEnd="19dp"
+                android:hint="City"
+                android:inputType="text"
+                app:layout_anchorGravity="center"
+                tools:ignore="TextFields" />
+
+            <Button
+                android:id="@+id/register"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@id/register_patient_text_view"
+                android:layout_below="@+id/city"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="25dp"
+                android:layout_marginEnd="19dp"
+                android:onClick="register_patient"
+                android:text="Register" />
+
+
+
+
+        </RelativeLayout>
+    </ScrollView>
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

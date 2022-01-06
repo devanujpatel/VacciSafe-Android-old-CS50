@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "77233922037",
+    "project_id": "vaccisafe-8e189",
+    "storage_bucket": "vaccisafe-8e189.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:77233922037:android:aaabfebbfe17c4cc8b8abc",
+        "android_client_info": {
+          "package_name": "com.example.vaccisafe"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "77233922037-u1b65o3ef7usoo4io9eus028gtvnla2k.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.vaccisafe",
+            "certificate_hash": "e4bc34c440ef8a0b98e9741018960688aaf68c8f"
+          }
+        },
+        {
+          "client_id": "77233922037-67uh9sj5iqn7v6f4mmi3sejnfrqksaud.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCmmRbpuoeCPCkd8dsMLJeBNmmk-j3ZK-4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "77233922037-67uh9sj5iqn7v6f4mmi3sejnfrqksaud.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

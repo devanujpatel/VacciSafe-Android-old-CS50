@@ -1,7 +1,6 @@
 package com.example.vaccisafe;
 
 import android.app.DatePickerDialog;
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -33,6 +32,9 @@ import static android.content.ContentValues.TAG;
 
 
 public class RegisterActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
+    String year_dob;
+    String month_dob;
+    String day_dob;
     private RequestQueue mQueue;
     private CoordinatorLayout coordinatorLayout;
     private EditText gui_emailid;
@@ -45,17 +47,13 @@ public class RegisterActivity extends AppCompatActivity implements DatePickerDia
     private EditText gui_address;
     private EditText gui_city;
 
-    String year_dob;
-    String month_dob;
-    String day_dob;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
         coordinatorLayout = findViewById(R.id.coordinator_layout);
 
-        gui_emailid = (EditText) findViewById(R.id.email_addr);
+        gui_emailid = findViewById(R.id.email_addr);
 
         gui_emailid.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
@@ -74,7 +72,7 @@ public class RegisterActivity extends AppCompatActivity implements DatePickerDia
         });
 
         // fill the gender spinner
-        gui_gender_spinner = (Spinner) findViewById(R.id.gender);
+        gui_gender_spinner = findViewById(R.id.gender);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.genders, android.R.layout.simple_spinner_item);
         // Specify the layout to use when the list of choices appears
@@ -83,7 +81,7 @@ public class RegisterActivity extends AppCompatActivity implements DatePickerDia
         gui_gender_spinner.setAdapter(adapter);
 
         // fill the gender spinner
-        gui_blood_group = (Spinner) findViewById(R.id.blood_group);
+        gui_blood_group = findViewById(R.id.blood_group);
         // Create an ArrayAdapter using the string array and a default spinner layout
         ArrayAdapter<CharSequence> adapter2 = ArrayAdapter.createFromResource(this,
                 R.array.blood_groups, android.R.layout.simple_spinner_item);
@@ -134,14 +132,14 @@ public class RegisterActivity extends AppCompatActivity implements DatePickerDia
 
         // gui_emailid = (EditText) findViewById(R.id.email_addr);
 
-        gui_password = (EditText) findViewById(R.id.password);
-        gui_fname = (EditText) findViewById(R.id.fname);
-        gui_lname = (EditText) findViewById(R.id.lname);
-        gui_mobile_number = (EditText) findViewById(R.id.mobile_number);
-        gui_address = (EditText) findViewById(R.id.address);
-        gui_city = (EditText) findViewById(R.id.city);
-        gui_blood_group = (Spinner) findViewById(R.id.blood_group);
-        gui_gender_spinner = (Spinner) findViewById(R.id.gender);
+        gui_password = findViewById(R.id.password);
+        gui_fname = findViewById(R.id.fname);
+        gui_lname = findViewById(R.id.lname);
+        gui_mobile_number = findViewById(R.id.mobile_number);
+        gui_address = findViewById(R.id.address);
+        gui_city = findViewById(R.id.city);
+        gui_blood_group = findViewById(R.id.blood_group);
+        gui_gender_spinner = findViewById(R.id.gender);
 
         String email = gui_emailid.getText().toString();
         String password = gui_password.getText().toString();
@@ -152,7 +150,6 @@ public class RegisterActivity extends AppCompatActivity implements DatePickerDia
         String blood_group = gui_blood_group.getSelectedItem().toString();
         String address = gui_address.getText().toString();
         String city = gui_city.getText().toString();
-
 
         if (is_empty(email) || is_empty(password) || is_empty(fname) || is_empty(lname) || is_empty(string_mobile_number) || is_empty(gender) || is_empty(blood_group) || is_empty(address) || is_empty(city)) {
             show_snackbar("One or more fields are empty! Please fill them up.");
@@ -172,16 +169,6 @@ public class RegisterActivity extends AppCompatActivity implements DatePickerDia
         int year = Integer.parseInt(year_dob);
         int month = Integer.parseInt(month_dob);
         int day = Integer.parseInt(day_dob);
-
-        if (year > Calendar.getInstance().get(Calendar.YEAR)) {
-            show_snackbar("Enter valid date of birth year");
-            all_correct = false;
-        } else if (month > (Calendar.getInstance().get(Calendar.MONTH) + 1)) {
-            if (day > Calendar.getInstance().get(Calendar.DAY_OF_MONTH)) {
-                show_snackbar("Enter a valid date of birth date");
-                all_correct = false;
-            }
-        }
 
         if (gender.equals("Select gender")) {
             show_snackbar("Please select your gender.");
@@ -212,22 +199,30 @@ public class RegisterActivity extends AppCompatActivity implements DatePickerDia
 
             Log.d(TAG, "register_patient: " + obj);
             // disable button
-            Button register_button = (Button) findViewById(R.id.register);
+            Button register_button = findViewById(R.id.register);
             register_button.setEnabled(false);
 
+            /*
             Log.d(TAG, "register_patient: All data correct");
             show_snackbar("all data correct");
+            */
+
             String url = "https://hello-world-1-fvonreigsq-el.a.run.app/register";
 
             JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, new JSONObject(obj),
                     new Response.Listener<JSONObject>() {
                         @Override
                         public void onResponse(JSONObject response) {
-                            // TODO: check if email already exists in the database (on server)
                             try {
                                 String pk = response.getString("pk");
-                                String email = response.getString("email");
-                                show_snackbar(pk + " " + email);
+                                if (pk.startsWith("(pymysql.err.IntegrityError) (1062")) {
+                                    show_snackbar("Email Address already exists. Try another one or try logging in.");
+                                    register_button.setEnabled(true);
+                                } else {
+                                    String email = response.getString("email");
+                                    Log.d(TAG, "onResponse: " + pk + ' ' + email);
+                                    show_snackbar(pk + " " + email);
+                                }
 
                             } catch (JSONException e) {
                                 e.printStackTrace();

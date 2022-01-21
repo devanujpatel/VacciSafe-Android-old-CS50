@@ -200,14 +200,14 @@ public class RegisterActivity extends AppCompatActivity implements DatePickerDia
             Log.d(TAG, "register_patient: " + obj);
             // disable button
             Button register_button = findViewById(R.id.register);
-            register_button.setEnabled(false);
+            //register_button.setEnabled(false);
 
             /*
             Log.d(TAG, "register_patient: All data correct");
             show_snackbar("all data correct");
             */
 
-            String url = "https://hello-world-1-fvonreigsq-el.a.run.app/register";
+            String url = "http://192.168.29.201:8000/register/";
 
             JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, new JSONObject(obj),
                     new Response.Listener<JSONObject>() {
@@ -215,13 +215,14 @@ public class RegisterActivity extends AppCompatActivity implements DatePickerDia
                         public void onResponse(JSONObject response) {
                             try {
                                 String pk = response.getString("pk");
-                                if (pk.startsWith("(pymysql.err.IntegrityError) (1062")) {
+                                Log.d(TAG, "onResponse: "+response);
+                                if (pk.equals("email exists")) {
                                     show_snackbar("Email Address already exists. Try another one or try logging in.");
                                     register_button.setEnabled(true);
                                 } else {
-                                    String email = response.getString("email");
-                                    Log.d(TAG, "onResponse: " + pk + ' ' + email);
-                                    show_snackbar(pk + " " + email);
+                                    String data = response.getString("data");
+                                    Log.d(TAG, "onResponse: Vaccine data from server: "+data);
+
                                 }
 
                             } catch (JSONException e) {

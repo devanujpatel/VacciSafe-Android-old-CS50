@@ -14,6 +14,8 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 
+import static android.content.ContentValues.TAG;
+
 public class HomeActivity extends AppCompatActivity {
 
     private RequestQueue mQueue;
@@ -22,10 +24,10 @@ public class HomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-
+        Log.d(TAG, "onCreate: this is homeactivity");
         mQueue = VolleySingleton.getInstance(this).getRequestQueue();
 
-        String url = "https://hello-world-1-fvonreigsq-el.a.run.app/";
+        String url = "http://192.168.29.201:8000/";
 
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
                 new Response.Listener<String>() {
@@ -33,7 +35,6 @@ public class HomeActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(String response) {
                         Log.d("MainActivity", "onResponse: "+response);
-
                     }
                 }, new Response.ErrorListener() {
             @SuppressLint("SetTextI18n")

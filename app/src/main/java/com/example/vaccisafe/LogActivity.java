@@ -60,12 +60,13 @@ public class LogActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(JSONObject response) {
                         try {
+                            Log.d(TAG, "onResponse: " + response);
                             String is_valid = response.getString("is_valid");
                             Log.d(TAG, "onResponse: from server: " + is_valid);
 
                             if (is_valid.equals("true")) {
                                 // Start new activity of await for server response for vaccines list
-                                startHomAct();
+                                startVerifyAct(response.getString("data"));
 
                             } else if (is_valid.equals("false")) {
                                 Toast.makeText(getApplicationContext(), "Wrong credentials", Toast.LENGTH_SHORT).show();
@@ -92,6 +93,14 @@ public class LogActivity extends AppCompatActivity {
 
         Intent home_intent = new Intent(this, HomeActivity.class);
         startActivity(home_intent);
+    }
+
+    // for testing purposes
+    // to avoid cumbersome and rather longer registering process
+    private void startVerifyAct(String data) {
+        Intent myIntent = new Intent(this, VerifyActivity.class);
+        myIntent.putExtra("data", data);
+        startActivity(myIntent);
     }
 
     /*

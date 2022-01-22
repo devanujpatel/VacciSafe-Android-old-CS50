@@ -1,6 +1,7 @@
 package com.example.vaccisafe;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -222,7 +223,7 @@ public class RegisterActivity extends AppCompatActivity implements DatePickerDia
                                 } else {
                                     String data = response.getString("data");
                                     Log.d(TAG, "onResponse: Vaccine data from server: "+data);
-
+                                    startVerifyAct(data);
                                 }
 
                             } catch (JSONException e) {
@@ -240,6 +241,12 @@ public class RegisterActivity extends AppCompatActivity implements DatePickerDia
             mQueue = VolleySingleton.getInstance(this).getRequestQueue();
             mQueue.add(jsonObjectRequest);
         }
+    }
+
+    private void startVerifyAct(String data) {
+        Intent myIntent = new Intent(this, VerifyActivity.class);
+        myIntent.putExtra("data", data);
+        startActivity(myIntent);
     }
 
 

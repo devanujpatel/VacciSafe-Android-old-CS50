@@ -51,9 +51,9 @@ public class VaccineRecyclerAdapter extends RecyclerView.Adapter<VaccineRecycler
         holder.mark_as_txt.setText(mark_as);
 
         if (mark_as.equals("Taken")) {
-            holder.mark_as_txt.setBackgroundColor(Color.parseColor("#00ff00"));
+            holder.mark_as_txt.setBackgroundColor(Color.parseColor("#4caf50"));
         } else {
-            holder.mark_as_txt.setBackgroundColor(Color.parseColor("#FFA500"));
+            holder.mark_as_txt.setBackgroundColor(Color.parseColor("#f97444"));
         }
     }
 
@@ -83,11 +83,11 @@ public class VaccineRecyclerAdapter extends RecyclerView.Adapter<VaccineRecycler
                     if (mark_as_txt.getText().equals("Not Taken")) {
                         vaccines.get(getAbsoluteAdapterPosition()).setMark_as("Taken");
                         mark_as_txt.setText("Taken");
-                        mark_as_txt.setBackgroundColor(Color.parseColor("#00ff00"));
+                        mark_as_txt.setBackgroundColor(Color.parseColor("#4caf50"));
                     } else {
                         mark_as_txt.setText("Not Taken");
                         vaccines.get(getAbsoluteAdapterPosition()).setMark_as("Not Taken");
-                        mark_as_txt.setBackgroundColor(Color.parseColor("#FFA500"));
+                        mark_as_txt.setBackgroundColor(Color.parseColor("#f97444"));
                     }
                 }
             });

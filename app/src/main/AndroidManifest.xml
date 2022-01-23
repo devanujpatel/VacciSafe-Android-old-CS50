@@ -12,7 +12,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:screenOrientation="portrait"
         android:supportsRtl="true"
-        android:theme="@style/Theme.AppCompat.DayNight">
+        android:theme="@style/Theme.VacciSafe">
         <activity android:name=".VerifyActivity" />
         <activity android:name=".LogActivity" />
         <activity android:name=".RegisterActivity" />

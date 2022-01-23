@@ -23,12 +23,12 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/welcome"
                 android:layout_marginStart="40dp"
-                android:layout_marginTop="250dp"
+                android:layout_marginTop="220dp"
                 android:layout_toEndOf="@+id/register"
                 android:onClick="log_in"
                 android:text="@string/log_in"
-                android:textSize="17sp"
-                android:textAllCaps="false"/>
+                android:textAllCaps="false"
+                android:textSize="17sp" />
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/welcome"
@@ -48,7 +48,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/welcome"
-                android:layout_marginTop="51dp"
+                android:layout_marginTop="40dp"
                 android:layout_marginEnd="2dp"
                 android:layout_marginBottom="219dp"
                 android:gravity="center"
@@ -61,12 +61,12 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/welcome"
                 android:layout_alignParentStart="true"
-                android:layout_marginStart="43dp"
-                android:layout_marginTop="250dp"
+                android:layout_marginStart="65dp"
+                android:layout_marginTop="220dp"
                 android:onClick="register"
                 android:text="@string/register"
-                android:textSize="17sp"
-                android:textAllCaps="false"/>
+                android:textAllCaps="false"
+                android:textSize="17sp" />
 
 
         </RelativeLayout>

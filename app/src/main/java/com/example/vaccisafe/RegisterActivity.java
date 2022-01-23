@@ -223,7 +223,7 @@ public class RegisterActivity extends AppCompatActivity implements DatePickerDia
                                 } else {
                                     String data = response.getString("data");
                                     Log.d(TAG, "onResponse: Vaccine data from server: "+data);
-                                    startVerifyAct(data);
+                                    startVerifyAct(data, email);
                                 }
 
                             } catch (JSONException e) {
@@ -243,9 +243,10 @@ public class RegisterActivity extends AppCompatActivity implements DatePickerDia
         }
     }
 
-    private void startVerifyAct(String data) {
+    private void startVerifyAct(String data, String email) {
         Intent myIntent = new Intent(this, VerifyActivity.class);
         myIntent.putExtra("data", data);
+        myIntent.putExtra("email", email);
         startActivity(myIntent);
     }
 

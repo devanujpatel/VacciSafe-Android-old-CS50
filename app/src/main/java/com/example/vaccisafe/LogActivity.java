@@ -66,7 +66,7 @@ public class LogActivity extends AppCompatActivity {
 
                             if (is_valid.equals("true")) {
                                 // Start new activity of await for server response for vaccines list
-                                startVerifyAct(response.getString("data"));
+                                startVerifyAct(response.getString("data"), email);
 
                             } else if (is_valid.equals("false")) {
                                 Toast.makeText(getApplicationContext(), "Wrong credentials", Toast.LENGTH_SHORT).show();
@@ -97,9 +97,10 @@ public class LogActivity extends AppCompatActivity {
 
     // for testing purposes
     // to avoid cumbersome and rather longer registering process
-    private void startVerifyAct(String data) {
+    private void startVerifyAct(String data, String email) {
         Intent myIntent = new Intent(this, VerifyActivity.class);
         myIntent.putExtra("data", data);
+        myIntent.putExtra("email", email);
         startActivity(myIntent);
     }
 

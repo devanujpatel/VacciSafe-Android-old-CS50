@@ -51,4 +51,7 @@ dependencies {
     // to show tabular data
     implementation 'com.evrencoskun.library:tableview:0.8.9.4'
     implementation 'androidx.recyclerview:recyclerview:1.2.1'
+
+    // to make table rows clickable
+    implementation 'de.codecrafters.tableview:tableview:2.2.0'
 }
